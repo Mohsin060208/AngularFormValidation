@@ -1,0 +1,12 @@
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    display: visible;
+}
+.valid{
+    color: green;
+}
+.invalid{
+    color:red;
+}
