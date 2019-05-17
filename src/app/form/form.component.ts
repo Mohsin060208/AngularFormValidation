@@ -16,25 +16,27 @@ constructor() { }
 ngOnInit(){
   this.Form = new FormGroup({
     fname: new FormControl('', [
-      Validators.required,Validators.pattern( /^[A-Z]+[a-zA-z]{2,15}$/)
+      Validators.required,Validators.pattern( /^[A-Z]+[a-zA-z]{1,}$/), Validators.minLength(3)
     ]),
     lname: new FormControl('', [
-      Validators.required,Validators.pattern( /^[A-Z]+[a-zA-z]{2,15}$/)
+      Validators.required,Validators.pattern( /^[A-Z]+[a-zA-z]{1,}$/), Validators.minLength(3)
     ]),
     email: new FormControl('', [
       Validators.required,Validators.email
     ]),
     pass: new FormControl('', [
-      Validators.required,Validators.pattern(/^[a-zA-z0-9]{8,}$/)
+      Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{3,}$/), Validators.minLength(8)
     ]),
     ph: new FormControl('',[
-      Validators.required, Validators.pattern(/^[0-9]{11}$/)
+      Validators.required, Validators.pattern(/^[0-9]{1,}$/), Validators.maxLength(11), Validators.minLength(11)
     ]),
     city: new FormControl('', Validators.required),
     cbo: new FormControl('', Validators.required)
   });
 }
-  
+get fn(){
+  return this.Form.get('fname');
+}
   onSubmit() {
     alert("Form Submitted Successfuly!");
     this.Form.reset();
