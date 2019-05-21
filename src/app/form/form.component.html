@@ -9,90 +9,74 @@
               <input type="text" class="form-control" placeholder="First name" 
               formControlName = "fname"
               id="firstName">
-              <div [hidden]="!Form.controls['fname'].hasError('required')">*Enter First Name. (required)</div>
-              <div class="invalid" [hidden]="!Form.controls['fname'].hasError('pattern')">Name should start with a Capital letter and should only contain letters.</div>
-              <div class="invalid" [hidden]="!Form.controls['fname'].hasError('minlength')">Name should be of at least 3 letters.</div>
-              <div class="valid" [hidden]="Form.controls['fname'].hasError('required') || Form.controls['fname'].hasError('pattern') || Form.controls['fname'].hasError('minlength')">Name is valid.</div>
+              <div *ngIf="Form.controls['fname'].hasError('required') && submitted">*Enter First Name. (required)</div>
+              <div class="invalid" *ngIf="Form.controls['fname'].hasError('pattern') && submitted">Name should start with a Capital letter and should only contain letters.</div>
+              <div class="invalid" *ngIf="Form.controls['fname'].hasError('minlength') && submitted">Name should be of at least 3 letters.</div>
             </div>
             <div class="col-md-1">
-              <p [hidden]="Form.controls['fname'].hasError('required') || Form.controls['fname'].hasError('pattern') || Form.controls['fname'].hasError('minlength')" > ✔</p>
-              <p [hidden]="!Form.controls['fname'].hasError('required')"> ⚠</p>
-              <p [hidden]="!Form.controls['fname'].hasError('pattern')"> ❌</p>
-              <p [hidden]="!Form.controls['fname'].hasError('minlength')"> 📛</p>
+                <p *ngIf="!(Form.controls['fname'].hasError('required') || Form.controls['fname'].hasError('pattern') || Form.controls['fname'].hasError('minlength')) && submitted" > ✔</p>
+              <p *ngIf="Form.controls['fname'].hasError('required') && submitted"> ⚠</p>
+              <p *ngIf="Form.controls['fname'].hasError('pattern') && submitted" > ❌</p>
+              <p *ngIf="Form.controls['fname'].hasError('minlength') && submitted"> 📛</p>
             </div>
             <div class="col-md-2"><label for="lastName">Last Name</label></div>
               <div class="col-md-3">
                   <input type="text" class="form-control" placeholder="Last name" 
                   formControlName = "lname"
                   id="lastName">
-                  <div [hidden]="!Form.controls['lname'].hasError('required')">*Enter Last Name. (required)</div>
-                  <div class="invalid" [hidden]="!Form.controls['lname'].hasError('pattern')">Name should start with a Capital letter and should only contain letters.</div>
-                  <div class="invalid" [hidden]="!Form.controls['lname'].hasError('minlength')">Name should be of at least 3 letters.</div>
-                  <div class="valid" [hidden]="Form.controls['lname'].hasError('required') || Form.controls['lname'].hasError('pattern') || Form.controls['lname'].hasError('minlength')">Name is valid.</div>
+                  <div *ngIf="Form.controls['lname'].hasError('required') && submitted">*Enter Last Name. (required)</div>
+                  <div class="invalid" *ngIf="Form.controls['lname'].hasError('pattern') && submitted">Name should start with a Capital letter and should only contain letters.</div>
+                  <div class="invalid" *ngIf="Form.controls['lname'].hasError('minlength') && submitted">Name should be of at least 3 letters.</div>
                 </div>
                 <div class="col-md-1">
-                  <p [hidden]="Form.controls['lname'].hasError('required') || Form.controls['lname'].hasError('pattern') || Form.controls['lname'].hasError('minlength')" > ✔</p>
-                  <p [hidden]="!Form.controls['lname'].hasError('required')"> ⚠</p>
-                  <p [hidden]="!Form.controls['lname'].hasError('pattern')"> ❌</p>
-                  <p [hidden]="!Form.controls['lname'].hasError('minlength')"> 📛</p>
+                  <p *ngIf="!(Form.controls['lname'].hasError('required') || Form.controls['lname'].hasError('pattern') || Form.controls['lname'].hasError('minlength')) && submitted" > ✔</p>
+                  <p *ngIf="Form.controls['lname'].hasError('required') && submitted"> ⚠</p>
+                  <p *ngIf="Form.controls['lname'].hasError('pattern') && submitted"> ❌</p>
+                  <p *ngIf="Form.controls['lname'].hasError('minlength') && submitted"> 📛</p>
                 </div>
             </div>
           <br>
           <div class="row">
             <div class="col-md-2"><label for="email">Email address</label></div>
-            <div class="col-md-3">
+            <div class="col-md-9">
 <input type="email" id="email" class="form-control" placeholder="Enter email" required formControlName="email">
-<div [hidden]="!Form.controls['email'].hasError('required')">*Enter Email. (required)</div>
-                  <div class="invalid" [hidden]="!Form.controls['email'].hasError('email')">Email is not valid</div>
-                  <div class="valid" [hidden]="Form.controls['email'].hasError('required') || Form.controls['email'].hasError('email')">Email is valid.</div>
+<div *ngIf="Form.controls['email'].hasError('required') && submitted">*Enter Email. (required)</div>
+                  <div class="invalid" *ngIf="Form.controls['email'].hasError('email') && submitted">Email is not valid</div>
+                  <div class="valid" *ngIf="!(Form.controls['email'].hasError('required') || Form.controls['email'].hasError('email')) && submitted">Email is valid.</div>
                 </div>
                 <div class="col-md-1">
-                  <p [hidden]="Form.controls['email'].hasError('required') || Form.controls['email'].hasError('email')" > ✔</p>
-                  <p [hidden]="!Form.controls['email'].hasError('required')"> ⚠</p>
-                  <p [hidden]="!Form.controls['email'].hasError('email')"> ❌</p>
+                  <p *ngIf="!(Form.controls['email'].hasError('required') || Form.controls['email'].hasError('email')) && submitted" > ✔</p>
+                  <p *ngIf="Form.controls['email'].hasError('required') && submitted"> ⚠</p>
+                  <p *ngIf="Form.controls['email'].hasError('email') && submitted"> ❌</p>
                 </div>
-              <div class="col-md-2"><label for="pass">Password</label></div>
-             <div class="col-md-3">
-                    <input type="password" class="form-control" id="pass" formControlName="pass" placeholder="Enter Password" required >
-                    <div [hidden]="!Form.controls['pass'].hasError('required')">*Enter Password. (required)</div>
-                  <div class="invalid" [hidden]="!Form.controls['pass'].hasError('pattern')">Password should contain one lower case letter, one upper case letter, one digit and no spaces.</div>
-                  <div class="invalid" [hidden]="!Form.controls['pass'].hasError('minlength')">Password should contain minimum 8 characters.</div>
-                  <div class="valid" [hidden]="Form.controls['pass'].hasError('required') || Form.controls['pass'].hasError('pattern') || Form.controls['pass'].hasError('minlength')">Password is valid.</div>
-                  </div>
-                  <div class="col-md-1">
-                      <p [hidden]="Form.controls['pass'].hasError('required') || Form.controls['pass'].hasError('pattern') || Form.controls['pass'].hasError('minlength')" > ✔</p>
-                      <p [hidden]="!Form.controls['pass'].hasError('required')"> ⚠</p>
-                      <p [hidden]="!Form.controls['pass'].hasError('pattern')"> ❌</p>
-                      <p [hidden]="!Form.controls['pass'].hasError('minlength')"> 📛</p>
-                    </div>
-          </div>
+              </div>
           <br>
           <div class="row">
             <div class="col-md-2"><label for="phone">Phone Number</label></div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                 <input type="text" class="form-control" id="phone" formControlName="ph" required>
-                <div [hidden]="!Form.controls['ph'].hasError('required')">*Enter Phone Number. (required)</div>
-                <div class="invalid" [hidden]="!Form.controls['ph'].hasError('pattern')">Phone Number should contain only numbers.</div>
-                <div class="invalid" [hidden]="!Form.controls['ph'].hasError('minlength')">Phone Number should be 11 digits long</div>
-                <div class="invalid" [hidden]="!Form.controls['ph'].hasError('maxlength')">Phone Number should be 11 digits long</div>
-                <div class="valid" [hidden]="Form.controls['ph'].hasError('required') || Form.controls['ph'].hasError('pattern') || Form.controls['ph'].hasError('minlength')">Phone Number is valid.</div>
+                <div *ngIf="Form.controls['ph'].hasError('required') && submitted">*Enter Phone Number. (required)</div>
+                <div class="invalid" *ngIf="Form.controls['ph'].hasError('pattern') && submitted">Phone Number should contain only numbers.</div>
+                <div class="invalid" *ngIf="Form.controls['ph'].hasError('minlength') && submitted">Phone Number should be 11 digits long</div>
+                <div class="invalid" *ngIf="Form.controls['ph'].hasError('maxlength') && submitted">Phone Number should be 11 digits long</div>
+                <div class="valid" *ngIf="!(Form.controls['ph'].hasError('required') || Form.controls['ph'].hasError('pattern') || Form.controls['ph'].hasError('minlength')) && submitted">Phone Number is valid.</div>
               </div>
               <div class="col-md-1">
-                  <p [hidden]="Form.controls['ph'].hasError('required') || Form.controls['ph'].hasError('pattern') || Form.controls['ph'].hasError('minlength')" > ✔</p>
-                  <p [hidden]="!Form.controls['ph'].hasError('required')"> ⚠</p>
-                  <p [hidden]="!Form.controls['ph'].hasError('pattern')"> ❌</p>
-                  <p [hidden]="!Form.controls['ph'].hasError('minlength')"> 📛</p>
+                  <p *ngIf="!(Form.controls['ph'].hasError('required') || Form.controls['ph'].hasError('pattern') || Form.controls['ph'].hasError('minlength')) && submitted" > ✔</p>
+                  <p *ngIf="Form.controls['ph'].hasError('required') && submitted"> ⚠</p>
+                  <p *ngIf="Form.controls['ph'].hasError('pattern') && submitted"> ❌</p>
+                  <p *ngIf="Form.controls['ph'].hasError('minlength') && submitted"> 📛</p>
                 </div>
                 <div class="col-md-1"><label for="city">City</label></div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <select id="city" class="form-control" formControlName= "city" required>
                 <option *ngFor="let city of cities" [value]="city">{{city}}</option>
               </select>
-              <div [hidden]="!Form.controls['city'].hasError('required')">*Select a City (required)</div>
+              <div *ngIf="Form.controls['city'].hasError('required') && submitted">*Select a City (required)</div>
               </div>
               <div class="col-md-1">
-                  <p [hidden]="Form.controls['city'].hasError('required')" > ✔</p>
-                  <p [hidden]="!Form.controls['city'].hasError('required')"> ⚠</p>
+                  <p *ngIf="!(Form.controls['city'].hasError('required')) && submitted" > ✔</p>
+                  <p *ngIf="Form.controls['city'].hasError('required') && submitted"> ⚠</p>
               </div>
             </div>
             <br>
@@ -102,11 +86,11 @@
                 <label class="form-check-label" for="gridCheck">
                   I accept the Licence Agreement
                 </label>
-                <div class="invalid" [hidden]="!Form.controls['cbo'].hasError('required')">*Please accept the Licence Agreement by checking the above box. (required)</div>
+                <div class="invalid" *ngIf="Form.controls['cbo'].hasError('required') && submitted">*Please accept the Licence Agreement by checking the above box. (required)</div>
               </div>
             </div>
             <br>
-  <button type="submit" class="btn btn-primary" [disabled]="!Form.valid">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
           </div>
 </form>
   </div>

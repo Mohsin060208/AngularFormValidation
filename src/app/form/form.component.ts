@@ -24,9 +24,6 @@ ngOnInit(){
     email: new FormControl('', [
       Validators.required,Validators.email
     ]),
-    pass: new FormControl('', [
-      Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{3,}$/), Validators.minLength(8)
-    ]),
     ph: new FormControl('',[
       Validators.required, Validators.pattern(/^[0-9]{1,}$/), Validators.maxLength(11), Validators.minLength(11)
     ]),
@@ -34,11 +31,15 @@ ngOnInit(){
     cbo: new FormControl('', Validators.required)
   });
 }
-get fn(){
-  return this.Form.get('fname');
-}
   onSubmit() {
-    alert("Form Submitted Successfuly!");
-    this.Form.reset();
+    this.submitted = true;
+    if(this.Form.valid){
+      console.log("Form Submitted!");
+      this.Form.reset();
+      this.submitted = false;
+    }
+    else{
+      console.log("Form contains some errors.");
+    }
   }
 }
