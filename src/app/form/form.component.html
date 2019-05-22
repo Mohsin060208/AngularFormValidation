@@ -66,6 +66,7 @@
                   <p *ngIf="Form.controls['ph'].hasError('required') && submitted"> ⚠</p>
                   <p *ngIf="Form.controls['ph'].hasError('pattern') && submitted"> ❌</p>
                   <p *ngIf="Form.controls['ph'].hasError('minlength') && submitted"> 📛</p>
+                  <p *ngIf="Form.controls['ph'].hasError('maxlength') && submitted"> 📛</p>
                 </div>
                 <div class="col-md-1"><label for="city">City</label></div>
               <div class="col-md-3">
